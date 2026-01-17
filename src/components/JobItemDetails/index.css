@@ -1,0 +1,75 @@
+.job-item-details-container {
+  padding: 20px;
+  color: #ffffff;
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.company-logo {
+  width: 60px;
+}
+
+.meta {
+  display: flex;
+  gap: 20px;
+  margin: 12px 0;
+}
+
+.description-section {
+  margin-top: 20px;
+}
+
+.visit-link {
+  color: #6366f1;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.skills-list,
+.similar-jobs-list {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.life-at-company {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.life-at-company img {
+  width: 300px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.failure-view-container {
+  text-align: center;
+  color: #ffffff;
+}
+
+.failure-view-container button {
+  background-color: #4f46e5;
+  border: none;
+  padding: 10px 16px;
+  color: #ffffff;
+  cursor: pointer;
+}

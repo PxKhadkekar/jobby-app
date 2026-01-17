@@ -1,71 +1,79 @@
 import {useState} from 'react'
+import {Navigate, useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import {useNavigate} from 'react-router-dom'
 import './index.css'
 
 const LoginForm = () => {
+  // CHANGED:
+  // - Replaced class state with useState hooks
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [showError, setShowError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
-  const [loading, setLoading] = useState(false)
 
+  // CHANGED:
+  // - Replaced history with useNavigate
   const navigate = useNavigate()
 
-  const submitForm = async event => {
+  const onSubmitForm = async event => {
     event.preventDefault()
-    setLoading(true)
-    setErrorMsg('')
 
-    try {
-      const response = await fetch('https://apis.ccbp.in/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({username, password}),
-      })
+    const userDetails = {username, password}
 
-      const data = await response.json()
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userDetails),
+    })
 
-      if (response.ok) {
-        Cookies.set('jwt_token', data.jwt_token, {expires: 30})
-        navigate('/', {replace: true})
-      } else {
-        setErrorMsg(data.error_msg)
-      }
-    } catch {
-      setErrorMsg('Network error')
-    } finally {
-      setLoading(false)
+    const data = await response.json()
+
+    if (response.ok) {
+      Cookies.set('jwt_token', data.jwt_token, {expires: 30})
+      navigate('/', {replace: true}) // CHANGED
+    } else {
+      setShowError(true)
+      setErrorMsg(data.error_msg)
     }
+  }
+
+  // CHANGED:
+  // - Redirect replaced with Navigate component
+  const jwtToken = Cookies.get('jwt_token')
+  if (jwtToken !== undefined) {
+    return <Navigate to="/" replace />
   }
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={submitForm}>
-        <h1 className="title">Login</h1>
+      <form className="login-form" onSubmit={onSubmitForm}>
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+          alt="website logo"
+          className="login-logo"
+        />
 
-        <label>Username</label>
+        <label htmlFor="username">USERNAME</label>
         <input
+          id="username"
           type="text"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          required
         />
 
-        <label>Password</label>
+        <label htmlFor="password">PASSWORD</label>
         <input
+          id="password"
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          required
         />
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in…' : 'Login'}
-        </button>
+        <button type="submit">Login</button>
 
-        {errorMsg && <p className="error">{errorMsg}</p>}
+        {showError && <p className="error-msg">{errorMsg}</p>}
       </form>
     </div>
   )

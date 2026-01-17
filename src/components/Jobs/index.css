@@ -1,0 +1,87 @@
+.jobs-route-container {
+  display: flex;
+  background-color: #000000;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.filters-section {
+  width: 30%;
+  padding: 20px;
+}
+
+.jobs-section {
+  width: 70%;
+  padding: 20px;
+}
+
+/* Profile */
+.profile-container {
+  background-image: url("https://assets.ccbp.in/frontend/react-js/profile-bg.png");
+  background-size: cover;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-container img {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+/* Search */
+.search-container {
+  display: flex;
+  margin: 20px 0;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 8px;
+}
+
+.search-container button {
+  padding: 8px 12px;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Filters */
+.filters-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.filters-list li {
+  margin-bottom: 10px;
+}
+
+/* Jobs */
+.jobs-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Failure & No jobs */
+.jobs-failure-container,
+.no-jobs-container {
+  text-align: center;
+}
+
+.jobs-failure-container button {
+  background-color: #4f46e5;
+  border: none;
+  padding: 10px 16px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Loader */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
