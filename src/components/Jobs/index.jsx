@@ -90,7 +90,7 @@ const Jobs = ({employmentTypesList, salaryRangesList}) => {
 
   useEffect(() => {
     getJobs()
-  }, [employmentTypes, salaryRange])
+  }, [employmentTypes, salaryRange , searchInput])
 
   const renderLoader = () => (
     <div className="loader-container" data-testid="loader">
