@@ -1,7 +1,9 @@
 /* Full background wrapper */
 .home-bg {
   min-height: 100vh;
-  background-color: #000000;
+  /* background-color: #000000; */
+  background-image: url("/Users/parthkhadkekar/Desktop/Projects/jobby-app/jobby-app/src/assets/background-image.jpg");
+  background-size: cover;
   display: flex;
   align-items: center;
 }
